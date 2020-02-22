@@ -1,10 +1,38 @@
 let ransomNote = require('../ransomNote.js')
+let magazine = "Aut Inveniam Viam Aut Faciam"
+
+describe("ransomNote.clean", () => {
+    test("given a string, it strips all whitespaces from it, downcases it, and saves all its letters to an array", () => {
+        expect(ransomNote.clean(magazine)).toEqual(["a", "u", "t", "i", "n", "v", "e", "n", "i", "a", "m", "v", "i", "a", "m", "a", "u", "t", "f", "a", "c", "i", "a", "m"])
+    })
+})
 
 describe("ransomNote.makeHistogram", () => {
-    let magazine = ["h", "e", "r", "e", "a", "r", "e", "s", "o", "m",
-    "e", "n", "i", "c", "e", "c", "l", "o", "t", "h", "e", "s", "t"]
-    let output = ransomNote.makeHistogram(magazine)
-    test("it returns a hash", () =>{
-        expect(output).toEqual({h: 2, e: 6, r: 2, a: 1, s: 2, o: 2, m: 1, n: 1, i: 1, c: 2, l: 1, t: 2})
+    
+    test("it returns a hash with keys equalling the letters from its input and values equalling their number of repeats", () =>{
+        let input = ["a", "u", "t", "i", "n", "v", "e", "n", "i", "a", "m", "v", "i", "a", "m", "a", "u", "t", "f", "a", "c", "i", "a", "m"]
+        let output = ransomNote.makeHistogram(input)
+        expect(output).toEqual({a: 6, u: 2, t: 2, i: 4, n: 2, v: 2, e: 1, m: 3, f: 1, c: 1})
+    })
+})
+
+describe("ransomNote.canMakeNote", () => {
+    
+    test("it returns false if the note cannot be made due to missing letters", () => {
+        let note = "Ad Astra Per Aspera"
+        let output = ransomNote.canMakeNote(magazine, note)
+        expect(output).toEqual(false)
+    })
+
+    test("it returns false if the note cannot be made due to insufficient number of repeated letters", () => {
+        let note = "cuneate"
+        let output = ransomNote.canMakeNote(magazine, note)
+        expect(output).toEqual(false)
+    })
+
+    test("it returns true if the note can be made", () => {
+        let note = "acuminate"
+        let output = ransomNote.canMakeNote(magazine, note)
+        expect(output).toEqual(true)
     })
 })

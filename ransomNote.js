@@ -1,6 +1,11 @@
-let makeHistogram = (magazine) => {
+let clean = (input) => {
+    return input.replace(/\s/g,'').toLowerCase().split("")
+}
+
+let makeHistogram = (input) => {
     let histogram = {}
-    for(let letter of magazine){
+
+    for(let letter of input){
         letter in histogram ? histogram[letter] += 1 : histogram[letter] = 1
     }  
     return histogram
@@ -8,9 +13,13 @@ let makeHistogram = (magazine) => {
 
 let canMakeNote = (magazine, note) => {
     let boolean = false
-    if (magazine.length >= note.length){
+
+    let cleanedMagazine = clean(magazine)
+    let cleanedNote = clean(note)
+
+    if (cleanedMagazine.length >= cleanedNote.length){
         let magazineHistogram = makeHistogram(magazine)
-        let noteHistogram = makeHistogram(note)
+        let noteHistogram = makeHistogram(cleanedNote)
         for(let letter in noteHistogram){
             if (magazineHistogram[letter] && magazineHistogram[letter] >= noteHistogram[letter]){
                 boolean = true
@@ -24,6 +33,7 @@ let canMakeNote = (magazine, note) => {
 }
 
 module.exports = {
+    clean,
     makeHistogram,
     canMakeNote
 }
