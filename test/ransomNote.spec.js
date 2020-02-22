@@ -1,0 +1,1 @@
+let ransomNote = require('../ransomNote.js')
