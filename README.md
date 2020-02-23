@@ -4,7 +4,7 @@
 <p>
 Solution code and test suite for <a href="********************">Solving the Ransom Note Algorithm in Javascript with Histograms</a>, a JavaScript language solution for the Ransom Note algorithm challenge, using histograms.
 <br><br/>
-  Run tests by typing: 'npm test'
+  Run tests by with the terminal command: 'npm test'
 </p>
 <hr>
 </hr>
