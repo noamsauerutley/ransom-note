@@ -11,17 +11,17 @@ let makeHistogram = (input) => {
     return histogram
 }
 
-let canMakeNote = (magazine, note) => {
+let canMakeNote = (source, note) => {
     let boolean = false
 
-    let cleanedMagazine = clean(magazine)
+    let cleanedSource = clean(source)
     let cleanedNote = clean(note)
 
-    if (cleanedMagazine.length >= cleanedNote.length){
-        let magazineHistogram = makeHistogram(magazine)
+    if (cleanedSource.length >= cleanedNote.length){
+        let sourceHistogram = makeHistogram(source)
         let noteHistogram = makeHistogram(cleanedNote)
         for(let letter in noteHistogram){
-            if (magazineHistogram[letter] && magazineHistogram[letter] >= noteHistogram[letter]){
+            if (sourceHistogram[letter] && sourceHistogram[letter] >= noteHistogram[letter]){
                 boolean = true
             }else{
                 boolean = false 
